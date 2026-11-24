@@ -1,0 +1,54 @@
+[package]
+name = "shortroom"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.94"
+description = "Short-code P2P QUIC rooms over iroh with authenticated star routing and version-gated admission"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/peakoshi/shortroom"
+readme = "README.md"
+keywords = ["iroh", "quic", "p2p", "networking", "rooms"]
+categories = ["network-programming", "game-development"]
+include = [
+    "/src",
+    "/benches",
+    "/README.md",
+    "/LICENSE-MIT",
+    "/LICENSE-APACHE",
+    "/CHANGELOG.md",
+]
+
+[dependencies]
+bytes = "1"
+iroh = "1.4"
+iroh-dns = "1.4"
+ring = "0.17"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "time"] }
+tracing = { version = "0.1", default-features = false, features = ["std"] }
+url = "2"
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1"
+
+[[bench]]
+name = "codec"
+harness = false
+
+[lints.rust]
+unsafe_op_in_unsafe_fn = "deny"
+unused_must_use = "deny"
+missing_debug_implementations = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+module_name_repetitions = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
